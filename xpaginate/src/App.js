@@ -98,7 +98,7 @@ function PaginatedItems({ itemsPerPage }) {
   return (
     <>
       {/* <Items currentItems={currentItems} /> */}
-      <table>
+      {/* <table>
         <tbody>
           <th>ID</th>
           <th>Name</th>
@@ -113,7 +113,7 @@ function PaginatedItems({ itemsPerPage }) {
           </tr>))}
           
         </tbody>
-      </table>
+      </table> */}
       <ReactPaginate
         breakLabel="..."
         nextLabel="next >"
