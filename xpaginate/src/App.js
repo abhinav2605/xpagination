@@ -144,13 +144,15 @@ function PaginatedItems({ itemsPerPage }) {
         </tbody>
       </table> */}
       <Items currentItems={currentItems} />
+      <button onClick={handlePageClick}>Previous</button>
+      <button onClick={handlePageClick}>Next</button>
       <ReactPaginate
         breakLabel="..."
         nextLabel="next >"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel="previous"
         renderOnZeroPageCount={null}
       />
     </>
