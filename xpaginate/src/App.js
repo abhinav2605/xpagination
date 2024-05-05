@@ -25,12 +25,13 @@ function App() {
     <div className="App">
       <h1>Employee Data Table</h1>
       <table>
-        <tbody>
+        <thead>
           <th>ID</th>
           <th>Name</th>
           <th>Email</th>
           <th>Role</th>
-
+        </thead>
+        <tbody>
           {Data.map((empData)=>(<tr>
             <td>{empData.id}</td>
             <td>{empData.name}</td>
