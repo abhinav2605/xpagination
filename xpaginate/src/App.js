@@ -16,7 +16,7 @@ function App() {
         //console.log(response.data)
       } catch (err) {
         //return new Error("Failed to Fetch !", err);
-        console.error("Failed to fetch");
+        alert("failed to fetch data");
       }
     })();
   });
@@ -59,7 +59,7 @@ function Items({ currentItems }) {
         //console.log(response.data)
       } catch (err) {
         //return new Error("Failed to Fetch !", err);
-        console.error("Failed to fetch");
+        alert("failed to fetch data");
       }
     })();
   });
@@ -111,7 +111,7 @@ function PaginatedItems({ itemsPerPage }) {
         //console.log(response.data)
       } catch (err) {
         //return new Error("Failed to Fetch !", err);
-        console.error("Failed to fetch");
+        alert("failed to fetch data");
       }
     })();
   });
