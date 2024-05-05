@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Employee Data Table</h1>
+      {/* <h1>Employee Data Table</h1>
       <table>
         <thead>
           <th>ID</th>
@@ -40,7 +40,7 @@ function App() {
           </tr>))}
           
         </tbody>
-      </table>
+      </table> */}
       <PaginatedItems itemsPerPage={10}/>
     </div>
   );
@@ -48,14 +48,40 @@ function App() {
 const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
 function Items({ currentItems }) {
+  const [Data, setData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        var response = await axios.get(
+          "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
+        );
+        setData(response.data);
+        //console.log(response.data)
+      } catch (err) {
+        //return new Error("Failed to Fetch !", err);
+        console.error("Failed to fetch");
+      }
+    })();
+  });
   return (
     <>
-      {currentItems &&
-        currentItems.map((item) => (
-          <div>
-            <h3>Item #{item}</h3>
-          </div>
-        ))}
+      <table>
+        <thead>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+        </thead>
+        <tbody>
+          {currentItems.map((empData)=>(<tr>
+            <td>{empData.id}</td>
+            <td>{empData.name}</td>
+            <td>{empData.email}</td>
+            <td>{empData.role}</td>
+          </tr>))}
+          
+        </tbody>
+      </table>
     </>
   );
 }
@@ -69,10 +95,12 @@ function PaginatedItems({ itemsPerPage }) {
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-  const currentItems = items.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(items.length / itemsPerPage);
+  //console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const [Data, setData] = useState([]);
+  const currentItems = Data.slice(itemOffset, endOffset);
+  console.log(currentItems)
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+  
   useEffect(() => {
     (async () => {
       try {
@@ -115,6 +143,7 @@ function PaginatedItems({ itemsPerPage }) {
           
         </tbody>
       </table> */}
+      <Items currentItems={currentItems} />
       <ReactPaginate
         breakLabel="..."
         nextLabel="next >"
